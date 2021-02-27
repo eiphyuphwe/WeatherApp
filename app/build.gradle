@@ -97,6 +97,8 @@ dependencies {
 
     implementation "com.jakewharton.threetenabp:threetenabp:$threetenabpVersion"
 
+    implementation 'com.google.code.gson:gson:2.8.5'
+
     // Debugging
     debugImplementation "com.amitshekhar.android:debug-db:$debug_db_version"
 
