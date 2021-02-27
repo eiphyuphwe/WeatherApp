@@ -3,12 +3,12 @@ package com.aster.app.weather.data.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Dummy(
+data class Wind (
+    @SerializedName("speed")
     @Expose
-    @SerializedName("name")
-    val name: String,
+    var speed: Double?,
 
+    @SerializedName("deg")
     @Expose
-    @SerializedName("imageUrl")
-    val imageUrl: String?
+    var deg: Double?
 )

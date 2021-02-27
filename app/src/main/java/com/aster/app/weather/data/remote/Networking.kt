@@ -12,15 +12,16 @@ import java.util.concurrent.TimeUnit
 
 object Networking {
 
-    const val HEADER_API_KEY = "x-api-key"
+    const val API_KEY = "appid"
     const val HEADER_ACCESS_TOKEN = "x-access-token"
     const val HEADER_USER_ID = "x-user-id"
 
     private const val NETWORK_CALL_TIMEOUT = 60
-    internal lateinit var API_KEY: String
+    const val API_KEY_VAL = "ca5ffb754fec12d870b76134d5f884b6"
+   // internal lateinit var API_KEY: String
 
-    fun create(apiKey: String, baseUrl: String, cacheDir: File, cacheSize: Long): NetworkService {
-        API_KEY = apiKey
+    fun create( baseUrl: String, cacheDir: File, cacheSize: Long): NetworkService {
+       // API_KEY = apiKey
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(

@@ -6,8 +6,7 @@ import com.aster.app.weather.R
 
 import com.aster.app.weather.data.model.Post
 import com.aster.app.weather.data.remote.Networking
-import com.aster.app.weather.data.repository.PostReposistory
-import com.aster.app.weather.data.repository.UserRepository
+import com.aster.app.weather.data.repository.WeatherReposistory
 import com.aster.app.weather.ui.base.BaseItemViewModel
 import com.aster.app.weather.utils.common.Resource
 import com.aster.app.weather.utils.common.TimeUtils
@@ -19,15 +18,15 @@ import javax.inject.Inject
 
 class PostItemViewModel @Inject constructor(schedulerProvider: SchedulerProvider,
                                             compositeDisposable: CompositeDisposable,
-                                            networkHelper: NetworkHelper,val userRepository: UserRepository,
-private val postReposistory: PostReposistory)
+                                            networkHelper: NetworkHelper,
+private val weatherReposistory: WeatherReposistory)
     : BaseItemViewModel<Post>(schedulerProvider,compositeDisposable,networkHelper)
 {
     companion object {
         const val TAG = "PostItemViewModel"
     }
 
-    private val user = userRepository.getCurrentUser()!!
+
     private val screenWidth = ScreenUtils.getScreenWidth()
     private val screenHeight = ScreenUtils.getScreenHeight()
     private val headers = mapOf(
@@ -78,10 +77,10 @@ private val postReposistory: PostReposistory)
            val api =
                if (isLiked.value == true)
 
-                   postReposistory.makeUnlikePost(it!!,user)
+                   weatherReposistory.makeUnlikePost(it!!,user)
 
                 else
-                    postReposistory.makeLikePost(it!!,user)
+                    weatherReposistory.makeLikePost(it!!,user)
 
             compositeDisposable.add(api
                 .subscribeOn(schedulerProvider.io())
