@@ -11,8 +11,5 @@ import dagger.Component
     modules = [FragmentModule::class]
 )
 interface FragmentComponent {
-
-
-
     fun inject(fragment: HomeFragment)
 }
