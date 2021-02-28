@@ -11,6 +11,8 @@ interface CurrentWeatherDao {
     @Query("SELECT * FROM CurrentWeather")
     fun getCurrentWeather(): LiveData<WeatherEntity>
 
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCurrentWeather(currentWeatherEntity: WeatherEntity)
 

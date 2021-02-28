@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import com.aster.app.weather.WeatherApplication
 import com.aster.app.weather.data.local.db.DatabaseService
 import com.aster.app.weather.data.remote.NetworkService
-import com.aster.app.weather.data.repository.UserRepository
 import com.aster.app.weather.di.ApplicationContext
 import com.aster.app.weather.di.module.ApplicationModule
 import com.aster.app.weather.utils.network.NetworkHelper
@@ -53,7 +52,7 @@ interface ApplicationComponent {
      * So, Dagger will be able to create an instance of UserRepository by its own using constructor injection
      *---------------------------------------------------------------------------------
      */
-    fun getUserRepository(): UserRepository
+
 
     fun getSchedulerProvider(): SchedulerProvider
 

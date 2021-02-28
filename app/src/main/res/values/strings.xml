@@ -26,4 +26,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_add_photos">Add Photos</string>
     <string name="menu_profile">Profile</string>
+    <string name="humidity">humidity</string>
+    <string name="wind">wind</string>
+    <string name="weather">weather</string>
+    <string name="sunrise">sunrise</string>
+    <string name="sunset">sunset</string>
+    <string name="minTemp">Minimum Temp</string>
 </resources>

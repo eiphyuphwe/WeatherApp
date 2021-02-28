@@ -13,7 +13,7 @@ interface NetworkService {
     fun doWeatherForecastCall(
         @Query("q") city: String?,
         @Query(Networking.API_KEY) apiKey: String = Networking.API_KEY_VAL
-    ): Single<WeatherResponse>
+    ): Single<ForecastResponse>
 
 
 }

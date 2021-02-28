@@ -2,7 +2,7 @@ package com.aster.app.weather.di.module
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aster.app.weather.data.repository.WeatherReposistory
+import com.aster.app.weather.data.repository.WeatherRepository
 import com.aster.app.weather.ui.base.BaseFragment
 import com.aster.app.weather.ui.home.HomeViewModel
 import com.aster.app.weather.ui.home.homepost.PostAdapter
@@ -31,12 +31,12 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
             schedulerProvider: SchedulerProvider,
             compositeDisposable: CompositeDisposable,
             networkHelper: NetworkHelper,
-            weatherRepository: WeatherReposistory
+            weatherRepository: WeatherRepository
     ): HomeViewModel = ViewModelProviders.of(
         fragment, ViewModelProviderFactory(HomeViewModel::class) {
             HomeViewModel(
                 schedulerProvider, compositeDisposable, networkHelper,
-                weatherRepository, ArrayList(), PublishProcessor.create()
+                weatherRepository
             )
         }).get(HomeViewModel::class.java)
 }

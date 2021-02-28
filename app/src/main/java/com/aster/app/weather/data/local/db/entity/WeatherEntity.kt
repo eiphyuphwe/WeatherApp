@@ -3,7 +3,7 @@ package com.aster.app.weather.data.local.db.entity
 import android.graphics.Color
 import androidx.room.*
 import com.aster.app.weather.data.model.WeatherItem
-import com.aster.app.weather.data.model.WeatherPojo
+import com.aster.app.weather.data.model.ListItem
 import java.text.SimpleDateFormat
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
@@ -37,7 +37,7 @@ data class WeatherEntity(
 
 )  {
     @Ignore
-    constructor(currentWeather: WeatherPojo) : this(
+    constructor(currentWeather: ListItem) : this(
             visibility = currentWeather.visibility,
             main = MainEntity(currentWeather.main),
             clouds = CloudsEntity(currentWeather.clouds),

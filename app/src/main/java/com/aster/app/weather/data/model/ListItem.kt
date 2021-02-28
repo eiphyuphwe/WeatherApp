@@ -3,7 +3,7 @@ package com.aster.app.weather.data.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class WeatherPojo(
+data class ListItem(
         @Expose
         @SerializedName("dt")
          val dt : Int,

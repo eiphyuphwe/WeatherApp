@@ -2,7 +2,6 @@ package com.aster.app.weather.di.module
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aster.app.weather.data.repository.UserRepository
 import com.aster.app.weather.ui.base.BaseActivity
 import com.aster.app.weather.ui.main.MainViewModel
 import com.aster.app.weather.ui.splash.SplashViewModel
@@ -28,11 +27,10 @@ class ActivityModule(private val activity: BaseActivity<*>) {
     fun provideSplashViewModel(
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
-        networkHelper: NetworkHelper,
-        userRepository: UserRepository
+        networkHelper: NetworkHelper
     ): SplashViewModel = ViewModelProviders.of(
         activity, ViewModelProviderFactory(SplashViewModel::class) {
-            SplashViewModel(schedulerProvider, compositeDisposable, networkHelper, userRepository)
+            SplashViewModel(schedulerProvider, compositeDisposable, networkHelper)
             //this lambda creates and return SplashViewModel
         }).get(SplashViewModel::class.java)
 

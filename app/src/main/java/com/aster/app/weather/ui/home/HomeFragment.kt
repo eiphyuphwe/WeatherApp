@@ -41,13 +41,13 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
     override fun setupObservers() {
         super.setupObservers()
 
-        viewModel.posts.observe(this, Observer {
+       /* viewModel.posts.observe(this, Observer {
             it.data?.run { postsAdapter.appendData(this) }
-        })
+        })*/
     }
 
     override fun setupView(view: View) {
-        rv_dummy.apply {
+       /* rv_dummy.apply {
             layoutManager = linearLayoutManager
             adapter = postsAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
                     }
                 }
             })
-        }
+        }*/
     }
 
 }

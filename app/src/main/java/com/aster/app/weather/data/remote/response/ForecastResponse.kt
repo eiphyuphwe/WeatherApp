@@ -1,10 +1,10 @@
 package com.aster.app.weather.data.remote.response
 
-import com.aster.app.weather.data.model.WeatherPojo
+import com.aster.app.weather.data.model.ListItem
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class WeatherResponse(
+data class ForecastResponse(
 
         @SerializedName("cod")
         @Expose
@@ -20,5 +20,5 @@ data class WeatherResponse(
 
         @SerializedName("list")
         @Expose
-        val list : List<WeatherPojo>
+        val list : List<ListItem>
 )
