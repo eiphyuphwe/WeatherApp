@@ -2,7 +2,7 @@ package com.aster.app.weather.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import com.aster.app.weather.data.model.ListItem
-import com.aster.app.weather.data.repository.WeatherRepository
+import com.aster.app.weather.data.repository.WeatherForecastRepository
 
 import com.aster.app.weather.ui.base.BaseViewModel
 import com.aster.app.weather.utils.common.Resource
@@ -14,7 +14,7 @@ class HomeViewModel(
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
         networkHelper: NetworkHelper,
-        private val weatherRepository: WeatherRepository
+        private val weatherForecastRepository: WeatherForecastRepository
        ):BaseViewModel(schedulerProvider,compositeDisposable,networkHelper)
 {
 
@@ -25,7 +25,7 @@ class HomeViewModel(
     fun onWeatherForecastLoading(city:String?)
     {
         compositeDisposable.addAll(
-            weatherRepository.fetchWeatherForecast(city)
+            weatherForecastRepository.fetchWeatherForecast(city)
                 .subscribeOn(schedulerProvider.io())
                 .subscribe({
 

@@ -1,16 +1,8 @@
 package com.aster.app.weather.ui.home.homepost
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
-import com.aster.app.weather.R
-
 import com.aster.app.weather.data.model.Post
-import com.aster.app.weather.data.remote.Networking
-import com.aster.app.weather.data.repository.WeatherRepository
+import com.aster.app.weather.data.repository.WeatherForecastRepository
 import com.aster.app.weather.ui.base.BaseItemViewModel
-import com.aster.app.weather.utils.common.Resource
-import com.aster.app.weather.utils.common.TimeUtils
-import com.aster.app.weather.utils.display.ScreenUtils
 import com.aster.app.weather.utils.network.NetworkHelper
 import com.aster.app.weather.utils.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -19,7 +11,7 @@ import javax.inject.Inject
 class PostItemViewModel @Inject constructor(schedulerProvider: SchedulerProvider,
                                             compositeDisposable: CompositeDisposable,
                                             networkHelper: NetworkHelper,
-private val weatherRepository: WeatherRepository)
+private val weatherForecastRepository: WeatherForecastRepository)
     : BaseItemViewModel<Post>(schedulerProvider,compositeDisposable,networkHelper)
 {
     companion object {

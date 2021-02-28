@@ -6,8 +6,8 @@ import com.aster.app.weather.data.remote.NetworkService
 import io.reactivex.Single
 import javax.inject.Inject
 
-class WeatherRepository @Inject constructor(private val networkService: NetworkService,
-                                            private val databaeService: DatabaseService)
+class WeatherForecastRepository @Inject constructor(private val networkService: NetworkService,
+                                                    private val databaeService: DatabaseService)
 {
 
     fun fetchWeatherForecast(city:String?) : Single<List<ListItem>>
