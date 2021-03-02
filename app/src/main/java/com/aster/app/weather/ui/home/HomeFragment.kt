@@ -9,6 +9,7 @@ import com.aster.app.weather.R
 import com.aster.app.weather.di.component.FragmentComponent
 import com.aster.app.weather.ui.base.BaseFragment
 import com.aster.app.weather.ui.home.homepost.PostAdapter
+import com.aster.app.weather.utils.common.Status
 import kotlinx.android.synthetic.main.fragment_dummies.*
 import javax.inject.Inject
 
@@ -44,6 +45,14 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
        /* viewModel.posts.observe(this, Observer {
             it.data?.run { postsAdapter.appendData(this) }
         })*/
+
+        viewModel.getWeatherForecast().observe(this, Observer {
+
+            if(it.status == Status.SUCCESS)
+            {
+
+            }
+        })
     }
 
     override fun setupView(view: View) {
