@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.aster.app.weather.BuildConfig
 import com.aster.app.weather.WeatherApplication
 import com.aster.app.weather.data.local.db.DatabaseService
+import com.aster.app.weather.data.local.prefs.WeatherPreferenceDataStore
 import com.aster.app.weather.data.remote.NetworkService
 import com.aster.app.weather.data.remote.Networking
 import com.aster.app.weather.di.ApplicationContext
@@ -40,10 +41,12 @@ class ApplicationModule(private val application: WeatherApplication) {
     @Provides
     fun provideSchedulerProvider(): SchedulerProvider = RxSchedulerProvider()
 
+
+
     @Provides
     @Singleton
     fun provideSharedPreferences(): SharedPreferences =
-        application.getSharedPreferences("bootcamp-instagram-project-prefs", Context.MODE_PRIVATE)
+        application.getSharedPreferences("setting", Context.MODE_PRIVATE)
 
     /**
      * We need to write @Singleton on the provide method if we are create the instance inside this method

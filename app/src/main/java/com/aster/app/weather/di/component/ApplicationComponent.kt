@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.aster.app.weather.WeatherApplication
 import com.aster.app.weather.data.local.db.DatabaseService
+import com.aster.app.weather.data.local.prefs.WeatherPreferenceDataStore
 import com.aster.app.weather.data.remote.NetworkService
 import com.aster.app.weather.di.ApplicationContext
 import com.aster.app.weather.di.module.ApplicationModule
@@ -41,6 +42,8 @@ interface ApplicationComponent {
     fun getSharedPreferences(): SharedPreferences
 
     fun getNetworkHelper(): NetworkHelper
+
+
 
     /**---------------------------------------------------------------------------
      * Dagger will internally create UserRepository instance using constructor injection.

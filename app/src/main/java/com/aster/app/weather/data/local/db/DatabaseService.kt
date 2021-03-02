@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 @Database(
     entities = [
-        WeatherEntity::class
+        ForecastEntity::class
     ],
     exportSchema = false,
     version = 1

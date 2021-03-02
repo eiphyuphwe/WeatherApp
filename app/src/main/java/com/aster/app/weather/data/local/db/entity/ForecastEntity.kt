@@ -19,8 +19,8 @@ data class ForecastEntity(
 ) {
 
     @Ignore
-    constructor(forecastResponse: ForecastResponse) : this(
+    constructor(list: List<ListItem>) : this(
         id = 0,
-        list = forecastResponse.list
+        list = list
     )
 }

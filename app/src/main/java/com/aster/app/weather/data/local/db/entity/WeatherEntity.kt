@@ -73,7 +73,7 @@ data class WeatherEntity(
         }
     }
 
-    fun getColor(): Int {
+    /*fun getColor(): Int {
         return when (dt?.let { getDateTime(it) }) {
             DayOfWeek.MONDAY -> Color.parseColor("#28E0AE")
             DayOfWeek.TUESDAY -> Color.parseColor("#FF0090")
@@ -84,6 +84,6 @@ data class WeatherEntity(
             DayOfWeek.SUNDAY -> Color.parseColor("#3D28E0")
             else -> Color.parseColor("#28E0AE")
         }
-    }
+    }*/
 }
 

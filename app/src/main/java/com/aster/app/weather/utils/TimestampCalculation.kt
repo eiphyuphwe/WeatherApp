@@ -10,7 +10,9 @@ object TimestampCalculation {
 
     fun isTimestampStale(timestamp: Long): Boolean {
         val currentTimestamp = generateTimestamp()
-        return ((currentTimestamp - timestamp) > TIMESTAMP_STALENESS_THRESHOLD_IN_SECONDS)
+        val elpsTime = currentTimestamp - timestamp
+
+        return (elpsTime > TIMESTAMP_STALENESS_THRESHOLD_IN_SECONDS)
     }
 
 }
