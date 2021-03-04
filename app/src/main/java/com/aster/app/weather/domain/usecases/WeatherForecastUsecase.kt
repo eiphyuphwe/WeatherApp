@@ -18,7 +18,6 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class WeatherForecastUsecase @Inject constructor(
     private val weatherForecastRepository: WeatherForecastRepository,
@@ -28,30 +27,32 @@ class WeatherForecastUsecase @Inject constructor(
 ) : Usecase() {
 
     private val _weatherForecastLiveData = MutableLiveData<Resource<List<ListItem>>>()
-    private val _wfDifferentDayLiveData = MutableLiveData<Resource<List<ListItem>>>()
+    private val _weatherForecastLiveDataMap = MutableLiveData<Resource<Map<String,List<ListItem>>>>()
 
     var timeStamp : Long? = null
     val weatherForecastLiveData: LiveData<Resource<List<ListItem>>>
         get() = _weatherForecastLiveData
 
+    val weatherForecastLiveDataMap:LiveData<Resource<Map<String,List<ListItem>>>>
+        get() =_weatherForecastLiveDataMap
+
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun filterValidation() : LiveData<Resource<List<ListItem>>>
+    private fun getMapOfListItemBasedOnDate(list:List<ListItem>)
     {
-        //filter different dates first and add to differntdateweatherList , for vertical view
-        // 2.3.2021
-        //item1 -> sub item2,sub item3,sub item 3
-        //item2 -> sub ietm1, sub item2, sub item3
-
-        var differntWeatherList : ArrayList<ArrayList<ListItem>> = ArrayList()
-        val weatherForecastListItemList = _weatherForecastLiveData?.value?.data
-        var datestr = weatherForecastListItemList?.get(0)?.date
-        weatherForecastListItemList?.let {
-            for(item in it)
-            {
-
-
-            }
+       val listItemMap:Map<String,List<ListItem>>? = list?.groupBy {
+           val sourceSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+           val requiredSdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+           val reqFormattedDate1 = requiredSdf.format(sourceSdf.parse(it.date))
+           reqFormattedDate1
         }
+
+        Log.d(TAG,"MAP ="+listItemMap.toString());
+        listItemMap?.keys?.forEach {
+            Log.d (TAG,"Key ="+it)
+         //   Log.d (TAG,"value ="+listItemMap.get(it))
+            Log.d (TAG,"value Size="+listItemMap.get(it)?.size)
+        }
+        _weatherForecastLiveDataMap.postValue(Resource.success(listItemMap))
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun isDifferentDate(dateStr1:String?, dateStr2: String?):Boolean
@@ -87,6 +88,7 @@ class WeatherForecastUsecase @Inject constructor(
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun invoke(city: Input.Single<String>) {
 
         // Get the timestamp from SharedPref
@@ -121,12 +123,9 @@ class WeatherForecastUsecase @Inject constructor(
                 callWeatherForcastNetwork(city = city.data)
             }
         } ?: callWeatherForcastNetwork(city = city.data)
-
-
-
-
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun callWeatherForcastNetwork(city: String)
     {
         Log.d(TAG, "Network call")
@@ -134,14 +133,18 @@ class WeatherForecastUsecase @Inject constructor(
             weatherForecastRepository.fetchWeatherForecast(city)
                 .subscribeOn(schedulerProvider.io())
                 .subscribe({
-                    print(it.size)
-                    print(it.get(0).toString())
+                    Log.d(TAG,"Size ===="+it.size)
+                    Log.d(TAG,"List<ListItem>====="+it)
                     it?.let {
                         val output: Resource<List<ListItem>> = Resource.success(it)
 
                         // Save to Db and update timestamp in SharedPref
 
                         weatherForecastRepository.insertWeatherForecastToDb(it)
+                        Log.d(TAG,"before filterValidation")
+                        getMapOfListItemBasedOnDate(it)
+                        Log.d(TAG,"after filterValidation")
+
                         weatherPreferenceDataStore.setTimeStamp(TimestampCalculation.generateTimestamp())
                         _weatherForecastLiveData.postValue(output)
                     }

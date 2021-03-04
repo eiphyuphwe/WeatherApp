@@ -9,8 +9,8 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="4dp"
     android:layout_marginBottom="8dp"
-    android:backgroundTint="@color/white"
-    app:cardBackgroundColor="@color/white"
+    android:background="@color/colorAccent"
+    app:cardBackgroundColor="@color/colorAccent"
     app:cardCornerRadius="18dp"
     app:cardElevation="0dp">
 
@@ -20,26 +20,27 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textViewHourOfDay"
+            android:id="@+id/textViewTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            tools:text="14:00" />
+            tools:text="23°" />
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewForecastIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_below="@id/textViewHourOfDay"
+            android:layout_below="@id/textViewTemp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
+            android:visibility="visible"
             tools:src="@drawable/a10d_svg" />
 
         <TextView
-            android:id="@+id/textViewTemp"
+            android:id="@+id/textViewHourOfDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageViewForecastIcon"
@@ -47,6 +48,6 @@
             android:layout_marginTop="8dp"
             android:textSize="19sp"
             android:textStyle="bold"
-            tools:text="23°" />
+            tools:text="7 pm" />
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

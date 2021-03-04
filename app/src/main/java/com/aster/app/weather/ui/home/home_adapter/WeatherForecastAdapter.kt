@@ -1,10 +1,12 @@
 package jeffliu.nestedrecyclerview
 
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
+import com.aster.app.weather.R
 import com.aster.app.weather.ui.home.home_adapter.StartSnapHelper
 import java.util.*
 import kotlin.collections.HashMap
@@ -48,6 +50,7 @@ class WeatherForecastAdapter(private val mItemClickListener: WeatherForecastItem
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        LayoutInflater.from(parent.context).inflate(R.layout.item_view_weather_time_snapshots, parent, false)
         val innerRv = RecyclerView(parent.context)
 
         // inflate inner item, find innerRecyclerView by ID…

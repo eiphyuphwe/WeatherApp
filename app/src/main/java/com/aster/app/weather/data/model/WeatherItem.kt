@@ -7,14 +7,14 @@ data class WeatherItem(
 
         @SerializedName("id")
         @Expose
-        private val id: Int,
+         val id: Int,
         @SerializedName("main")
         @Expose
-        private val main: String,
+         val main: String,
         @SerializedName("description")
         @Expose
-        private val description: String,
+         val description: String,
         @SerializedName("icon")
         @Expose
-        private val icon: String
+         val icon: String
 )

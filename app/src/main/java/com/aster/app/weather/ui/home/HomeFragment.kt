@@ -1,6 +1,8 @@
 package com.aster.app.weather.ui.home
 
+import android.app.LauncherActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,10 +12,14 @@ import com.aster.app.weather.di.component.FragmentComponent
 import com.aster.app.weather.ui.base.BaseFragment
 import com.aster.app.weather.ui.home.homepost.PostAdapter
 import com.aster.app.weather.utils.common.Status
+import com.example.nested_recycler_view.HomeAdapter
+import com.example.nested_recycler_view.MainHeadingData
 import kotlinx.android.synthetic.main.fragment_dummies.*
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<HomeViewModel>() {
+
+
 
     companion object {
 
@@ -27,11 +33,13 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
         }
     }
 
+
     @Inject
     lateinit var linearLayoutManager: LinearLayoutManager
 
-    @Inject
-    lateinit var postsAdapter: PostAdapter
+    /*@Inject
+    lateinit var postsAdapter: PostAdapter*/
+    val adapter = HomeAdapter()
 
     override fun provideLayoutId(): Int = R.layout.fragment_dummies
 
@@ -48,29 +56,20 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
 
         viewModel.getWeatherForecast().observe(this, Observer {
 
-            if(it.status == Status.SUCCESS)
-            {
-
+            if(it.status == Status.SUCCESS) {
+                val weatherList = it.data
+                weatherList?.let { it1 -> adapter.updateData(it1) }
+                adapter.notifyDataSetChanged()
             }
+
         })
     }
 
     override fun setupView(view: View) {
-       /* rv_dummy.apply {
-            layoutManager = linearLayoutManager
-            adapter = postsAdapter
-            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    layoutManager?.run {
-                        if (this is LinearLayoutManager
-                            && itemCount > 0
-                            && itemCount == findLastVisibleItemPosition() + 1
-                        ) viewModel.onLoadMore()
-                    }
-                }
-            })
-        }*/
+
+        rv_dummy.layoutManager = LinearLayoutManager(activity)
+        rv_dummy.adapter = adapter
+
     }
 
 }

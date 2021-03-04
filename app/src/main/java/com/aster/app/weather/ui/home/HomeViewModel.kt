@@ -1,5 +1,7 @@
 package com.aster.app.weather.ui.home
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import com.aster.app.weather.data.model.ListItem
 import com.aster.app.weather.data.repository.WeatherForecastRepository
@@ -23,14 +25,18 @@ class HomeViewModel(
     val loading : MutableLiveData<Boolean> = MutableLiveData()
     val weather: MutableLiveData<Resource<List<ListItem>>> = MutableLiveData()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun onWeatherForecastLoading(city:String?)
     {
 
         weatherForecastUsecase.invoke(Usecase.Input.Single<String>(city!!))
     }
 
-    fun getWeatherForecast()= weatherForecastUsecase.weatherForecastLiveData
+    fun getWeatherForecast()= weatherForecastUsecase.weatherForecastLiveDataMap
 
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         onWeatherForecastLoading("Singapore")
     }

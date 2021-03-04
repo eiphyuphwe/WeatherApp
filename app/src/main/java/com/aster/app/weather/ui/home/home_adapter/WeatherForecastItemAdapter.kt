@@ -6,6 +6,7 @@ import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.aster.app.weather.R
 import java.util.*
 
 class WeatherForecastItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -18,7 +19,8 @@ class WeatherForecastItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CellViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.detail_list_item_type_title, parent, false))
+        return CellViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_view_weather_details, parent, false))
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

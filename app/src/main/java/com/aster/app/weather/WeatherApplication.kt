@@ -1,6 +1,7 @@
 package com.aster.app.weather
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import com.aster.app.weather.di.component.ApplicationComponent
 import com.aster.app.weather.di.component.DaggerApplicationComponent
 import com.aster.app.weather.di.module.ApplicationModule
@@ -11,6 +12,7 @@ class WeatherApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         injectDependencies()
     }
 
