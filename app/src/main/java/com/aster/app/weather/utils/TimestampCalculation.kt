@@ -19,4 +19,5 @@ object TimestampCalculation {
         return (elpsTime > TIMESTAMP_STALENESS_THRESHOLD_IN_SECONDS)
     }
 
+
 }

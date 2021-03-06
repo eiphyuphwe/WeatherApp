@@ -1,16 +1,16 @@
 package com.aster.app.weather.utils
 
-import com.aster.app.weather.data.model.Wind
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 object Convertion {
 
+    val TIMESTAMP_STALENESS_THRESHOLD_IN_SECONDS: Long = 3 * 60 * 60
+    val CONST_WIND = 2.23694
     fun convertKelvinTocelsius(kelvin: Double): Double = roundOffDecimal(kelvin - 273.15)
 
     fun roundOffDecimal(number: Double): Double {
@@ -19,27 +19,19 @@ object Convertion {
         return df.format(number).toDouble()
     }
 
-    val TIMESTAMP_STALENESS_THRESHOLD_IN_SECONDS:Long= 3 * 60 * 60
+    fun timeConvertion(dateStr: String): String {
 
-    fun timeConvertion(dateStr: String) : String
-    {
+        // Get date from string
+        // Get date from string
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date = dateFormatter.parse(dateStr)
 
-        var convertedTime = ""
-        val tk = StringTokenizer(dateStr)
-        val date: String = tk.nextToken()
-        val time: String = tk.nextToken()
+        // Get time from date
 
-        val sdf = SimpleDateFormat("hh:mm:ss")
-        val sdfs = SimpleDateFormat("hh a")
-        val dt: Date
-        try {
-            dt = sdf.parse(time)
-            System.out.println("Time Display: " + sdfs.format(dt)) // <-- I got result here
-             convertedTime = sdfs.format(dt);
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        return convertedTime
+        // Get time from date
+        val timeFormatter = SimpleDateFormat("h a")
+        val displayValue = timeFormatter.format(date)
+        return displayValue
 
     }
 
@@ -61,7 +53,7 @@ object Convertion {
         }
     }
 
-    fun convertWindMPH(mps: Double) : Double = 2.23694 * mps
+    fun convertWindMPH(mps: Double): Double = CONST_WIND * mps
 
 
 }

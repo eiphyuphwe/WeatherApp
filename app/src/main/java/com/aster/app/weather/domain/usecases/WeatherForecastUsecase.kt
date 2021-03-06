@@ -40,7 +40,8 @@ class WeatherForecastUsecase @Inject constructor(
     private fun getMapOfListItemBasedOnDate(list:List<ListItem>)
     {
        val listItemMap:Map<String,List<ListItem>>? = list?.groupBy {
-           val sourceSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
+       val sourceSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
            val requiredSdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
            val reqFormattedDate1 = requiredSdf.format(sourceSdf.parse(it.date))
            reqFormattedDate1
@@ -49,7 +50,6 @@ class WeatherForecastUsecase @Inject constructor(
         Log.d(TAG,"MAP ="+listItemMap.toString());
         listItemMap?.keys?.forEach {
             Log.d (TAG,"Key ="+it)
-         //   Log.d (TAG,"value ="+listItemMap.get(it))
             Log.d (TAG,"value Size="+listItemMap.get(it)?.size)
         }
         _weatherForecastLiveDataMap.postValue(Resource.success(listItemMap))
