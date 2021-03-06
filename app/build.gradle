@@ -48,6 +48,13 @@ android {
         }
         release {
             minifyEnabled true // to apply the proguard
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testCoverageEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://api.openweathermap.org/data/\"")
            // buildConfigField("String", "API_KEY", "\"HBNA19QVVAPP\"")

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.aster.app.weather.data.local.db.entity.ForecastEntity
 import com.aster.app.weather.data.model.*
+import com.aster.app.weather.data.remote.response.ForecastResponse
 
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
@@ -59,6 +60,23 @@ fun createSampleForecastEntity(): ForecastEntity {
     val list = listOf(listItem)
     return ForecastEntity(1, list)
 }
+
+// Data Generators
+fun createSampleForecastResponse(): ForecastResponse {
+    val weatherItem = WeatherItem(1, "rains", "Heavy Rain", "a01d_svg")
+    val weather = listOf(weatherItem)
+    val listItem = ListItem(
+        123123, Main(34.0, 30.0, 2.0, 321.0, 21, 132.0, 12.0, 35.0),
+        weather, Clouds(1), Wind(12.0, 12.0),
+        Rain(0.76),
+        Sys("d"),
+        10000,
+        0.65, "2021-03-06 06:00:00"
+    )
+    val list = listOf(listItem)
+    return ForecastResponse("cod", 100, 1, list)
+}
+
 
 
 
