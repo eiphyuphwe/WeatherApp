@@ -1,19 +1,14 @@
 package com.aster.app.weather.ui.home
 
-import android.app.LauncherActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.aster.app.weather.R
 import com.aster.app.weather.di.component.FragmentComponent
 import com.aster.app.weather.ui.base.BaseFragment
-import com.aster.app.weather.ui.home.homepost.PostAdapter
 import com.aster.app.weather.utils.common.Status
 import com.example.nested_recycler_view.HomeAdapter
-import com.example.nested_recycler_view.MainHeadingData
 import kotlinx.android.synthetic.main.fragment_forecast.*
 import javax.inject.Inject
 
