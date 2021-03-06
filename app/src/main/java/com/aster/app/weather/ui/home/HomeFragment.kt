@@ -14,7 +14,7 @@ import com.aster.app.weather.ui.home.homepost.PostAdapter
 import com.aster.app.weather.utils.common.Status
 import com.example.nested_recycler_view.HomeAdapter
 import com.example.nested_recycler_view.MainHeadingData
-import kotlinx.android.synthetic.main.fragment_dummies.*
+import kotlinx.android.synthetic.main.fragment_forecast.*
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<HomeViewModel>() {
@@ -41,7 +41,7 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
     lateinit var postsAdapter: PostAdapter*/
     val adapter = HomeAdapter()
 
-    override fun provideLayoutId(): Int = R.layout.fragment_dummies
+    override fun provideLayoutId(): Int = R.layout.fragment_forecast
 
     override fun injectDependencies(fragmentComponent: FragmentComponent) {
         fragmentComponent.inject(this)

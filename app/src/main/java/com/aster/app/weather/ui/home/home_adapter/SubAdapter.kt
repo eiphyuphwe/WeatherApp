@@ -24,11 +24,11 @@ class SubAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //holder.tvSubType?.text = subHeadingData.subData.get(position).subHeading
         holder.tvTemp?.text =
-            subItemList?.get(position)?.main?.temp?.let { Convertion.convertKelvinTocelsius(it).toString() }
-        holder.tvViewHourofDay?.text = subItemList?.get(position)?.date
+            subItemList?.get(position)?.main?.temp?.let { Convertion.convertKelvinTocelsius(it).toString()+"°" }
+        holder.tvViewHourofDay?.text = Convertion.timeConvertion(subItemList?.get(position)?.date)
 
+        //set image
         var iconPath = subItemList?.get(position)?.weatherList.get(0)?.icon
-        //var icon =  hcontext.resources.getDrawable(imageid, null)
         val newPath = iconPath.replace(iconPath, "a$iconPath")
         val imageid = holder.view.context.resources.getIdentifier(newPath + "_svg", "drawable", holder.view.context.packageName)
         val imageDrawable = holder.view.context.resources.getDrawable(imageid, holder.view.context.theme) as VectorDrawable

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class ListItem(
         @Expose
         @SerializedName("dt")
-         val dt : Int,
+         val dt : Long,
 
         @Expose
         @SerializedName("main")
