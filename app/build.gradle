@@ -31,6 +31,15 @@ android {
         jvmTarget = "1.8"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("upload-key.keystore")
+            storePassword 'passwotd'
+            keyAlias 'alias'
+            keyPassword 'password'
+        }
+    }
+
     buildTypes {
         // Add this debug config to provide debug settings
         debug {
@@ -121,6 +130,13 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
 
     // UI Testing
+    testImplementation "org.robolectric:robolectric:4.5.1"
+    testImplementation "androidx.test:runner:$test_runner_version"
+    testImplementation "androidx.test.ext:junit:$test_ext_runner_version"
+    testImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    testImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+
     androidTestImplementation "androidx.test:runner:$test_runner_version"
     androidTestImplementation "androidx.test.ext:junit:$test_ext_runner_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"

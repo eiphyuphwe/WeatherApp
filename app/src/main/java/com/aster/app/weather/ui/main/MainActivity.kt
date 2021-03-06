@@ -31,14 +31,7 @@ class MainActivity : BaseActivity<MainViewModel>(){
                         viewModel.onHomeNavSelected()
                         true
                     }
-                    R.id.itemAddPhotos -> {
-                        viewModel.onPhotoNavSelected()
-                        true
-                    }
-                    R.id.itemProfile -> {
-                        viewModel.onProfileSelected()
-                        true
-                    }
+
                     else -> false
                 }
             }

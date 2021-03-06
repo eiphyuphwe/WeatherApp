@@ -23,7 +23,7 @@
     <string name="post_like_label">%1d Likes</string>
 
     <!--menu-->
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Singapore</string>
     <string name="menu_add_photos">Add Photos</string>
     <string name="menu_profile">Profile</string>
     <string name="humidity">humidity</string>
