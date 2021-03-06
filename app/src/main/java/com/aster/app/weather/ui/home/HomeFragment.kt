@@ -1,6 +1,7 @@
 package com.aster.app.weather.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,11 +51,14 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
         })*/
 
         viewModel.getWeatherForecast().observe(this, Observer {
-
+            Log.d(TAG,"Observer for weather forecast")
             if(it.status == Status.SUCCESS) {
+                Log.d(TAG,"Data fetched successfully for weather forecast")
                 val weatherList = it.data
                 weatherList?.let { it1 -> adapter.updateData(it1) }
                 adapter.notifyDataSetChanged()
+            }else{
+                Log.d(TAG,"Data fetched failed for weather forecast ${it.status}")
             }
 
         })
