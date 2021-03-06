@@ -1,8 +1,6 @@
 package com.aster.app.weather.domain.usecases
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.aster.app.weather.data.local.prefs.WeatherPreferenceDataStore
@@ -36,7 +34,6 @@ class WeatherForecastUsecase @Inject constructor(
         get() = _weatherForecastLiveDataMap
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun invoke(city: Input.Single<String>) {
 
         // Get the timestamp from SharedPref
@@ -55,7 +52,6 @@ class WeatherForecastUsecase @Inject constructor(
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun callWeatherForcastDB(city: String) {
 
         _weatherForecastLiveDataMap.addSource(_weatherForecastLiveDataDB) {
@@ -68,7 +64,6 @@ class WeatherForecastUsecase @Inject constructor(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun getMapOfListItemBasedOnDate(list: List<ListItem>):Resource<Map<String,List<ListItem>>> {
         val listItemMap: Map<String, List<ListItem>>? = list?.groupBy {
             val sourceSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
@@ -76,18 +71,10 @@ class WeatherForecastUsecase @Inject constructor(
             val reqFormattedDate1 = requiredSdf.format(sourceSdf.parse(it.date))
             reqFormattedDate1
         }
-
-        Log.d(TAG, "MAP =" + listItemMap.toString());
-        listItemMap?.keys?.forEach {
-            Log.d(TAG, "Key =" + it)
-            //   Log.d (TAG,"value ="+listItemMap.get(it))
-            Log.d(TAG, "value Size=" + listItemMap.get(it)?.size)
-        }
         return Resource.success(listItemMap)
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun callWeatherForcastNetwork(city: String) {
         Log.d(TAG, "Network call")
         compositeDisposable.addAll(
@@ -106,7 +93,6 @@ class WeatherForecastUsecase @Inject constructor(
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun handleNetworkSuccess(list: List<ListItem>, city: String) {
     Completable
         .fromCallable{
