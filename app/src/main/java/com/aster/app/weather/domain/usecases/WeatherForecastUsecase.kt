@@ -18,6 +18,7 @@ import io.reactivex.disposables.Disposable
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+
 /*
 *  WeatherForecastUsecase is business domain for clean architecture , that will communicate with repository for business logic
 * */
@@ -61,13 +62,13 @@ class WeatherForecastUsecase @Inject constructor(
             Log.d(TAG, "outside filterValidation DB")
             it.list?.let { listOfListItem ->
                 Log.d(TAG, "inside filterValidation DB")
-                _weatherForecastLiveDataMap.value=getMapOfListItemBasedOnDate(listOfListItem)
+                _weatherForecastLiveDataMap.value = getMapOfListItemBasedOnDate(listOfListItem)
             }
         }
     }
 
     //group by the weather forecast listitem list, by date
-    private fun getMapOfListItemBasedOnDate(list: List<ListItem>):Resource<Map<String,List<ListItem>>> {
+    private fun getMapOfListItemBasedOnDate(list: List<ListItem>): Resource<Map<String, List<ListItem>>> {
         val listItemMap: Map<String, List<ListItem>>? = list?.groupBy {
             val sourceSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
             val requiredSdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -85,7 +86,7 @@ class WeatherForecastUsecase @Inject constructor(
                 .subscribeOn(schedulerProvider.io())
                 .subscribe({
                     it?.let {
-                        handleNetworkSuccess(it,city)
+                        handleNetworkSuccess(it, city)
                     }
                 }, {
                     it?.let {
@@ -103,30 +104,28 @@ class WeatherForecastUsecase @Inject constructor(
     * */
 
     private fun handleNetworkSuccess(list: List<ListItem>, city: String) {
-    Completable
-        .fromCallable{
-            weatherForecastRepository.insertWeatherForecastToDb(list)
-            weatherPreference.setTimeStamp(TimestampCalculation.generateTimestamp())
-        }
-        .subscribeOn(schedulerProvider.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(object:CompletableObserver{
-            override fun onSubscribe(d: Disposable) {
-
+        Completable
+            .fromCallable {
+                weatherForecastRepository.insertWeatherForecastToDb(list)
+                weatherPreference.setTimeStamp(TimestampCalculation.generateTimestamp())
             }
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : CompletableObserver {
+                override fun onSubscribe(d: Disposable) {
 
-            override fun onComplete() {
-                // Save to Db and update timestamp in SharedPref
-                callWeatherForcastDB(city = city)
-            }
+                }
 
-            override fun onError(e: Throwable) {
-                TODO("Not yet implemented")
-            }
+                override fun onComplete() {
+                    // Save to Db and update timestamp in SharedPref
+                    callWeatherForcastDB(city = city)
+                }
 
-        })
+                override fun onError(e: Throwable) {
+                    TODO("Not yet implemented")
+                }
 
-
+            })
 
 
     }

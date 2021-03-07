@@ -41,7 +41,6 @@ class ApplicationModule(private val application: WeatherApplication) {
     fun provideSchedulerProvider(): SchedulerProvider = RxSchedulerProvider()
 
 
-
     @Provides
     @Singleton
     fun provideSharedPreferences(): SharedPreferences =

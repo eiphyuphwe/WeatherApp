@@ -9,9 +9,9 @@ import com.aster.app.weather.data.model.Main
 @Entity(tableName = "Main")
 data class MainEntity(
         @ColumnInfo(name = "temp")
-        var temp:Double?,
+        var temp: Double?,
         @ColumnInfo(name = "feels_like")
-        var feels_like:Double?,
+        var feels_like: Double?,
         @ColumnInfo(name = "tempMin")
         var tempMin: Double?,
         @ColumnInfo(name = "grndLevel")
@@ -24,8 +24,7 @@ data class MainEntity(
         var seaLevel: Double?,
         @ColumnInfo(name = "tempMax")
         var tempMax: Double?
-)
-{
+) {
 
     @Ignore
     constructor(main: Main?) : this(

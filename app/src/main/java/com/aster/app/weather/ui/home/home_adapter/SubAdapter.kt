@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.item_view_weather_hours_of_day.view.*
 
 class SubAdapter(
     val subItemList: List<ListItem>
-    ) : RecyclerView.Adapter<ViewHolder>() {
+) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int {
         return subItemList.size
@@ -45,11 +45,13 @@ class SubAdapter(
         // holder.tvImage.setImageResource(R.drawable.a01d_svg)
 
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_view_weather_hours_of_day, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_view_weather_hours_of_day, parent, false)
+        )
     }
 }
 

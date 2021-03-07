@@ -6,19 +6,19 @@ import com.google.gson.annotations.SerializedName
 
 data class ForecastResponse(
 
-        @SerializedName("cod")
-        @Expose
-        val cod : String,
+    @SerializedName("cod")
+    @Expose
+    val cod: String,
 
-        @SerializedName("message")
-        @Expose
-        val message:Int,
+    @SerializedName("message")
+    @Expose
+    val message: Int,
 
-        @SerializedName("cnt")
-        @Expose
-        val cnt : Int,
+    @SerializedName("cnt")
+    @Expose
+    val cnt: Int,
 
-        @SerializedName("list")
-        @Expose
-        val list : List<ListItem>
+    @SerializedName("list")
+    @Expose
+    val list: List<ListItem>
 )

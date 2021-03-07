@@ -1,8 +1,9 @@
 package com.aster.app.weather.data.remote
 
-import com.aster.app.weather.data.remote.response.*
+import com.aster.app.weather.data.remote.response.ForecastResponse
 import io.reactivex.Single
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Query
 import javax.inject.Singleton
 
 @Singleton

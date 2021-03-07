@@ -35,7 +35,7 @@ object Conversion {
 
     }
 
-     fun getDay(s: Long): DayOfWeek? {
+    fun getDay(s: Long): DayOfWeek? {
         return try {
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.US)
             val netDate = Date(s * 1000)

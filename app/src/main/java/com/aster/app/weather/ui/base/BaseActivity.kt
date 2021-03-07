@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import com.aster.app.weather.WeatherApplication
 import com.aster.app.weather.di.component.ActivityComponent

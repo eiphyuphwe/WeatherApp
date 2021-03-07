@@ -16,7 +16,6 @@ import javax.inject.Inject
 class HomeFragment : BaseFragment<HomeViewModel>() {
 
 
-
     companion object {
 
         const val TAG = "HomeFragment"
@@ -46,19 +45,19 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
     override fun setupObservers() {
         super.setupObservers()
 
-       /* viewModel.posts.observe(this, Observer {
-            it.data?.run { postsAdapter.appendData(this) }
-        })*/
+        /* viewModel.posts.observe(this, Observer {
+             it.data?.run { postsAdapter.appendData(this) }
+         })*/
 
         viewModel.getWeatherForecast().observe(this, Observer {
-            Log.d(TAG,"Observer for weather forecast")
-            if(it.status == Status.SUCCESS) {
-                Log.d(TAG,"Data fetched successfully for weather forecast")
+            Log.d(TAG, "Observer for weather forecast")
+            if (it.status == Status.SUCCESS) {
+                Log.d(TAG, "Data fetched successfully for weather forecast")
                 val weatherList = it.data
                 weatherList?.let { it1 -> adapter.updateData(it1) }
                 adapter.notifyDataSetChanged()
-            }else{
-                Log.d(TAG,"Data fetched failed for weather forecast ${it.status}")
+            } else {
+                Log.d(TAG, "Data fetched failed for weather forecast ${it.status}")
             }
 
         })

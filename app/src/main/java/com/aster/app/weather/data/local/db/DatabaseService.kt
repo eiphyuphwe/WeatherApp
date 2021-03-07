@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.aster.app.weather.data.local.db.dao.CurrentWeatherDao
-import com.aster.app.weather.data.local.db.entity.*
+import com.aster.app.weather.data.local.db.entity.ForecastEntity
 import com.aster.app.weather.utils.DataConverter
 import javax.inject.Singleton
 

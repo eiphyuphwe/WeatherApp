@@ -4,36 +4,31 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import com.aster.app.weather.data.model.ListItem
-import com.aster.app.weather.data.repository.WeatherForecastRepository
 import com.aster.app.weather.domain.Usecase
 import com.aster.app.weather.domain.usecases.WeatherForecastUsecase
-
 import com.aster.app.weather.ui.base.BaseViewModel
 import com.aster.app.weather.utils.common.Resource
 import com.aster.app.weather.utils.network.NetworkHelper
 import com.aster.app.weather.utils.rx.SchedulerProvider
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 
 class HomeViewModel(
-        schedulerProvider: SchedulerProvider,
-        compositeDisposable: CompositeDisposable,
-        networkHelper: NetworkHelper,
-        private val weatherForecastUsecase: WeatherForecastUsecase
-       ):BaseViewModel(schedulerProvider,compositeDisposable,networkHelper) {
+    schedulerProvider: SchedulerProvider,
+    compositeDisposable: CompositeDisposable,
+    networkHelper: NetworkHelper,
+    private val weatherForecastUsecase: WeatherForecastUsecase
+) : BaseViewModel(schedulerProvider, compositeDisposable, networkHelper) {
 
-    val loading : MutableLiveData<Boolean> = MutableLiveData()
+    val loading: MutableLiveData<Boolean> = MutableLiveData()
     val weather: MutableLiveData<Resource<List<ListItem>>> = MutableLiveData()
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun onWeatherForecastLoading(city:String?)
-    {
+    fun onWeatherForecastLoading(city: String?) {
 
         weatherForecastUsecase.invoke(Usecase.Input.Single<String>(city!!))
     }
 
-    fun getWeatherForecast()= weatherForecastUsecase.weatherForecastLiveDataMap
-
+    fun getWeatherForecast() = weatherForecastUsecase.weatherForecastLiveDataMap
 
 
     @RequiresApi(Build.VERSION_CODES.O)

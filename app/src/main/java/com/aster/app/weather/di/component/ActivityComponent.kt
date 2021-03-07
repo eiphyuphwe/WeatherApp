@@ -15,5 +15,5 @@ interface ActivityComponent {
 
     fun inject(activity: SplashActivity)
 
-    fun inject(activity:MainActivity)
+    fun inject(activity: MainActivity)
 }

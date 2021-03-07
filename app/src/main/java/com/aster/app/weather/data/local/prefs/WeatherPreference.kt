@@ -5,16 +5,15 @@ import android.content.SharedPreferences
 
 import javax.inject.Inject
 
-class WeatherPreference@Inject constructor(private val prefs: SharedPreferences){
+class WeatherPreference @Inject constructor(private val prefs: SharedPreferences) {
 
-    companion object{
+    companion object {
 
         const val NETWORK_CALL_TIMESTAMP_KEY = "network_call_timestamp"
         const val NAME = "settings_pref"
     }
 
-    fun setTimeStamp(timeStamp:Long)
-    {
+    fun setTimeStamp(timeStamp: Long) {
         prefs.edit().putLong(NETWORK_CALL_TIMESTAMP_KEY, timeStamp).apply()
     }
 

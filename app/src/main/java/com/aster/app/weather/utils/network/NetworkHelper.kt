@@ -2,10 +2,10 @@ package com.aster.app.weather.utils.network
 
 import android.content.Context
 import android.net.ConnectivityManager
+import com.aster.app.weather.utils.log.Logger
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
-import com.aster.app.weather.utils.log.Logger
 import java.io.IOException
 import java.net.ConnectException
 import javax.inject.Singleton

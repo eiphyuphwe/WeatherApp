@@ -7,21 +7,21 @@ import com.aster.app.weather.utils.network.NetworkHelper
 import com.aster.app.weather.utils.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 
-class MainViewModel(schedulerProvider:SchedulerProvider,compositeDisposable: CompositeDisposable,
-networkHelper: NetworkHelper) : BaseViewModel(schedulerProvider,compositeDisposable,networkHelper){
+class MainViewModel(
+    schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable,
+    networkHelper: NetworkHelper
+) : BaseViewModel(schedulerProvider, compositeDisposable, networkHelper) {
 
     val profileNavigation = MutableLiveData<Event<Boolean>>()
     val homeNavigation = MutableLiveData<Event<Boolean>>()
     val photoNavigation = MutableLiveData<Event<Boolean>>()
 
 
-    fun onProfileSelected()
-    {
+    fun onProfileSelected() {
         profileNavigation.postValue(Event(true))
     }
 
-    fun onHomeNavSelected()
-    {
+    fun onHomeNavSelected() {
         homeNavigation.postValue(Event(true))
     }
 

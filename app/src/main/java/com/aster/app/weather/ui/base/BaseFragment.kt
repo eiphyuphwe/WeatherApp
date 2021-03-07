@@ -39,7 +39,11 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
             .build()
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
         inflater.inflate(provideLayoutId(), container, false)
 
     protected open fun setupObservers() {

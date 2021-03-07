@@ -1,7 +1,7 @@
 package com.aster.app.weather.data.remote
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.aster.app.weather.BuildConfig
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,10 +18,10 @@ object Networking {
 
     private const val NETWORK_CALL_TIMEOUT = 60
     const val API_KEY_VAL = "ca5ffb754fec12d870b76134d5f884b6"
-   // internal lateinit var API_KEY: String
+    // internal lateinit var API_KEY: String
 
-    fun create( baseUrl: String, cacheDir: File, cacheSize: Long): NetworkService {
-       // API_KEY = apiKey
+    fun create(baseUrl: String, cacheDir: File, cacheSize: Long): NetworkService {
+        // API_KEY = apiKey
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(

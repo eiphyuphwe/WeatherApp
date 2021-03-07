@@ -9,38 +9,35 @@ import com.google.gson.reflect.TypeToken
 object DataConverter {
 
     val gson = Gson()
+
     @TypeConverter
     @JvmStatic
-    fun convertJsonStringToWeatherList(data:String?):List<WeatherItem>?
-    {
+    fun convertJsonStringToWeatherList(data: String?): List<WeatherItem>? {
         // List
         val listWeatherItemType = object : TypeToken<List<WeatherItem>>() {}.type
-        var weatherItemList : List<WeatherItem> = gson.fromJson(data, listWeatherItemType)
+        var weatherItemList: List<WeatherItem> = gson.fromJson(data, listWeatherItemType)
         return weatherItemList
     }
 
     @TypeConverter
     @JvmStatic
-    fun convertWeatherListToJsonString(weatherItemList:List<WeatherItem>) : String?
-    {
-            val jsonString = gson.toJson(weatherItemList)
-         return jsonString
+    fun convertWeatherListToJsonString(weatherItemList: List<WeatherItem>): String? {
+        val jsonString = gson.toJson(weatherItemList)
+        return jsonString
     }
 
     @TypeConverter
     @JvmStatic
-    fun convertJsonStringToListItem(data:String?):List<ListItem>?
-    {
+    fun convertJsonStringToListItem(data: String?): List<ListItem>? {
         // List
         val listWeatherItemType = object : TypeToken<List<ListItem>>() {}.type
-        var weatherItemList : List<ListItem> = gson.fromJson(data, listWeatherItemType)
+        var weatherItemList: List<ListItem> = gson.fromJson(data, listWeatherItemType)
         return weatherItemList
     }
 
     @TypeConverter
     @JvmStatic
-    fun convertListItemToJsonString(weatherItemList:List<ListItem>) : String?
-    {
+    fun convertListItemToJsonString(weatherItemList: List<ListItem>): String? {
         val jsonString = gson.toJson(weatherItemList)
         return jsonString
     }

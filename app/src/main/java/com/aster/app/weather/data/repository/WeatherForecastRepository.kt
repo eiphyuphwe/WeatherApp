@@ -7,19 +7,18 @@ import com.aster.app.weather.data.remote.NetworkService
 import io.reactivex.Single
 import javax.inject.Inject
 
-class WeatherForecastRepository @Inject constructor(private val networkService: NetworkService,
-                                                    private val databaseService: DatabaseService)
-{
+class WeatherForecastRepository @Inject constructor(
+    private val networkService: NetworkService,
+    private val databaseService: DatabaseService
+) {
 
-    fun fetchWeatherForecast(city:String?) : Single<List<ListItem>>
-    {
-       return networkService.doWeatherForecastCall(city)
-               .map { it.list }
+    fun fetchWeatherForecast(city: String?): Single<List<ListItem>> {
+        return networkService.doWeatherForecastCall(city)
+            .map { it.list }
     }
 
 
-    fun insertWeatherForecastToDb(list:List<ListItem>)
-    {
+    fun insertWeatherForecastToDb(list: List<ListItem>) {
         databaseService.currentWeatherDao().insertCurrentWeather(ForecastEntity(list))
     }
 

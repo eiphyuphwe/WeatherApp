@@ -10,11 +10,12 @@ import com.aster.app.weather.ui.home.HomeFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainViewModel>(){
+class MainActivity : BaseActivity<MainViewModel>() {
 
     companion object {
         const val TAG = "MainActivity"
     }
+
     private var activeFragment: Fragment? = null
     override fun provideLayoutId(): Int = R.layout.activity_main
 
@@ -22,6 +23,7 @@ class MainActivity : BaseActivity<MainViewModel>(){
 
         activityComponent.inject(this)
     }
+
     override fun setupView(savedInstanceState: Bundle?) {
         bottomNavigation.run {
             itemIconTintList = null
@@ -46,7 +48,6 @@ class MainActivity : BaseActivity<MainViewModel>(){
         })
 
 
-
     }
 
     private fun showHome() {
@@ -69,9 +70,6 @@ class MainActivity : BaseActivity<MainViewModel>(){
 
         activeFragment = fragment
     }
-
-
-
 
 
 }
