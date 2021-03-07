@@ -8,5 +8,4 @@
 - `Unit Testing`
 - `Mokito` for mocking the objects in Unit Testing
 - `Proguard` setup and `R8` for code shrinking and code obfusation for release variant 
-- 
 
