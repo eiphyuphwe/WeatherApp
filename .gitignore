@@ -6,3 +6,5 @@
 /build
 /captures
 .externalNativeBuild
+app/seeds.txt
+app/unused.txt

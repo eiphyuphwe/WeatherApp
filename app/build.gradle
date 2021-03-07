@@ -33,10 +33,12 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("upload-key.keystore")
-            storePassword 'passwotd'
+            storeFile file("uploadkey.keystore")
+            storePassword 'mypassword'
             keyAlias 'alias'
-            keyPassword 'password'
+            keyPassword 'mypassword'
+            v1SigningEnabled true
+            v2SigningEnabled true
         }
     }
 
@@ -48,16 +50,13 @@ android {
         }
         release {
             minifyEnabled true // to apply the proguard
-            minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testCoverageEnabled false
-
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
             buildConfigField("String", "BASE_URL", "\"https://api.openweathermap.org/data/\"")
-           // buildConfigField("String", "API_KEY", "\"HBNA19QVVAPP\"")
         }
     }
 }
