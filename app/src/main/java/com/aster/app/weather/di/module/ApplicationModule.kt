@@ -7,7 +7,6 @@ import androidx.room.Room
 import com.aster.app.weather.BuildConfig
 import com.aster.app.weather.WeatherApplication
 import com.aster.app.weather.data.local.db.DatabaseService
-import com.aster.app.weather.data.local.prefs.WeatherPreferenceDataStore
 import com.aster.app.weather.data.remote.NetworkService
 import com.aster.app.weather.data.remote.Networking
 import com.aster.app.weather.di.ApplicationContext

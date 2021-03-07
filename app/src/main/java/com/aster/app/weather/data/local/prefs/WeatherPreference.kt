@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 import javax.inject.Inject
 
-class WeatherPreferenceDataStore@Inject constructor(private val prefs: SharedPreferences){
+class WeatherPreference@Inject constructor(private val prefs: SharedPreferences){
 
     companion object{
 

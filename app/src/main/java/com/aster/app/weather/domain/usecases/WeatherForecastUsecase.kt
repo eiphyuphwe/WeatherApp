@@ -3,7 +3,7 @@ package com.aster.app.weather.domain.usecases
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.aster.app.weather.data.local.prefs.WeatherPreferenceDataStore
+import com.aster.app.weather.data.local.prefs.WeatherPreference
 import com.aster.app.weather.data.model.ListItem
 import com.aster.app.weather.data.repository.WeatherForecastRepository
 import com.aster.app.weather.domain.Usecase
@@ -18,12 +18,14 @@ import io.reactivex.disposables.Disposable
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-
+/*
+*  WeatherForecastUsecase is business domain for clean architecture , that will communicate with repository for business logic
+* */
 class WeatherForecastUsecase @Inject constructor(
     private val weatherForecastRepository: WeatherForecastRepository,
     private val compositeDisposable: CompositeDisposable,
     private val schedulerProvider: SchedulerProvider,
-    private val weatherPreferenceDataStore: WeatherPreferenceDataStore
+    private val weatherPreference: WeatherPreference
 ) : Usecase() {
 
     var timeStamp: Long? = null
@@ -37,7 +39,7 @@ class WeatherForecastUsecase @Inject constructor(
     fun invoke(city: Input.Single<String>) {
 
         // Get the timestamp from SharedPref
-        timeStamp = weatherPreferenceDataStore.getTimeStamp()
+        timeStamp = weatherPreference.getTimeStamp()
         timeStamp?.let {
             // If not empty and within 3 hours, call the database
             if (!TimestampCalculation.isTimestampStale(it)) {
@@ -64,6 +66,7 @@ class WeatherForecastUsecase @Inject constructor(
         }
     }
 
+    //group by the weather forecast listitem list, by date
     private fun getMapOfListItemBasedOnDate(list: List<ListItem>):Resource<Map<String,List<ListItem>>> {
         val listItemMap: Map<String, List<ListItem>>? = list?.groupBy {
             val sourceSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
@@ -74,7 +77,7 @@ class WeatherForecastUsecase @Inject constructor(
         return Resource.success(listItemMap)
     }
 
-
+    // fetch the data from netwwork
     private fun callWeatherForcastNetwork(city: String) {
         Log.d(TAG, "Network call")
         compositeDisposable.addAll(
@@ -93,11 +96,17 @@ class WeatherForecastUsecase @Inject constructor(
         )
     }
 
+    /*
+    * if fecth the data from network is success
+    *  save the dat to db
+    *  fetch the data  from database
+    * */
+
     private fun handleNetworkSuccess(list: List<ListItem>, city: String) {
     Completable
         .fromCallable{
             weatherForecastRepository.insertWeatherForecastToDb(list)
-            weatherPreferenceDataStore.setTimeStamp(TimestampCalculation.generateTimestamp())
+            weatherPreference.setTimeStamp(TimestampCalculation.generateTimestamp())
         }
         .subscribeOn(schedulerProvider.io())
         .observeOn(AndroidSchedulers.mainThread())
