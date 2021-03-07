@@ -42,7 +42,7 @@ class SubAdapter(
         ) as VectorDrawable
         holder.tvImage.visibility = View.VISIBLE
         holder.tvImage.setImageDrawable(imageDrawable)
-        // holder.tvImage.setImageResource(R.drawable.a01d_svg)
+
 
 
     }

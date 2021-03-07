@@ -12,16 +12,19 @@ class WeatherForecastRepository @Inject constructor(
     private val databaseService: DatabaseService
 ) {
 
+ //fetch the data from network
     fun fetchWeatherForecast(city: String?): Single<List<ListItem>> {
         return networkService.doWeatherForecastCall(city)
             .map { it.list }
     }
 
 
+    //insert the weather forecast listItem to db
     fun insertWeatherForecastToDb(list: List<ListItem>) {
         databaseService.currentWeatherDao().insertCurrentWeather(ForecastEntity(list))
     }
 
+    //get the weatherForecast Live data from db
     fun getAllWeatherForecastFromDb() = databaseService.currentWeatherDao().getCurrentWeather();
 
 

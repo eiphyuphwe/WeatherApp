@@ -9,6 +9,7 @@ import com.aster.app.weather.data.repository.WeatherForecastRepository
 import com.aster.app.weather.domain.Usecase
 import com.aster.app.weather.utils.TimestampCalculation
 import com.aster.app.weather.utils.common.Resource
+import com.aster.app.weather.utils.network.NetworkHelper
 import com.aster.app.weather.utils.rx.SchedulerProvider
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver
@@ -26,7 +27,8 @@ class WeatherForecastUsecase @Inject constructor(
     private val weatherForecastRepository: WeatherForecastRepository,
     private val compositeDisposable: CompositeDisposable,
     private val schedulerProvider: SchedulerProvider,
-    private val weatherPreference: WeatherPreference
+    private val weatherPreference: WeatherPreference,
+    private val networkHelper: NetworkHelper
 ) : Usecase() {
 
     var timeStamp: Long? = null
@@ -48,7 +50,14 @@ class WeatherForecastUsecase @Inject constructor(
                 callWeatherForcastDB(city = city.data)
             } else {
                 // If empty or over 3 hours, call the network, save to database,
-                callWeatherForcastNetwork(city = city.data)
+                if(networkHelper.isNetworkConnected()){
+                    callWeatherForcastNetwork(city = city.data)
+                }
+                else{
+                    _weatherForecastLiveDataMap.value = Resource.error(null)
+
+                }
+
             }
         }
             ?: callWeatherForcastNetwork(city = city.data) // If empty or over 3 hours, call the network, save to database,

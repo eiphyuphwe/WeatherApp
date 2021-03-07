@@ -19,6 +19,7 @@ object Conversion {
         return df.format(number).toDouble()
     }
 
+    //convert the data string yyyy-MM-dd HH:mm:ss to hr AM/PM format
     fun timeConversion(dateStr: String): String {
 
         // Get date from string
@@ -35,6 +36,7 @@ object Conversion {
 
     }
 
+    //get the DayOfWeek
     fun getDay(s: Long): DayOfWeek? {
         return try {
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.US)
@@ -53,6 +55,7 @@ object Conversion {
         }
     }
 
+    //convert Wind mile per hr
     fun convertWindMPH(mps: Double): Double = CONST_WIND * mps
 
 

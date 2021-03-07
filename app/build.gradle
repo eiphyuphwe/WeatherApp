@@ -46,7 +46,7 @@ android {
         // Add this debug config to provide debug settings
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.openweathermap.org/data/\"")
-            //buildConfigField("String", "API_KEY", "\"HBNA19QVVAPP\"")
+
         }
         release {
             minifyEnabled true // to apply the proguard

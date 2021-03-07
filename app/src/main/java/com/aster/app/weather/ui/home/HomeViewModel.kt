@@ -25,6 +25,7 @@ class HomeViewModel(
     @RequiresApi(Build.VERSION_CODES.O)
     fun onWeatherForecastLoading(city: String?) {
 
+        //invoke weatherForecastUsecase business domain, usecase will decide to fetch the data from whether from network or db
         weatherForecastUsecase.invoke(Usecase.Input.Single<String>(city!!))
     }
 
