@@ -7,6 +7,7 @@ import com.aster.app.weather.data.model.ListItem
 import com.aster.app.weather.domain.Usecase
 import com.aster.app.weather.domain.usecases.WeatherForecastUsecase
 import com.aster.app.weather.ui.base.BaseViewModel
+import com.aster.app.weather.utils.AppConstant
 import com.aster.app.weather.utils.common.Resource
 import com.aster.app.weather.utils.network.NetworkHelper
 import com.aster.app.weather.utils.rx.SchedulerProvider
@@ -34,7 +35,7 @@ class HomeViewModel(
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
-        onWeatherForecastLoading("Singapore")
+        onWeatherForecastLoading(AppConstant.CITY)
     }
 
 

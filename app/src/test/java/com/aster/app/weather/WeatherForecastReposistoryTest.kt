@@ -6,6 +6,7 @@ import com.aster.app.weather.data.model.ListItem
 import com.aster.app.weather.data.remote.NetworkService
 import com.aster.app.weather.data.repository.WeatherForecastRepository
 import com.aster.app.weather.util.createSampleForecastResponse
+import com.aster.app.weather.utils.AppConstant
 import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Assert.fail
@@ -48,7 +49,7 @@ class WeatherForecastReposistoryTest {
     @Test
     fun fetchWeatherForecastFromNetwrok_Success() {
         var list = createSampleForecastResponse().list
-        Mockito.`when`(networkService.doWeatherForecastCall("Singapore")).thenReturn(
+        Mockito.`when`(networkService.doWeatherForecastCall(AppConstant.CITY)).thenReturn(
             Single.just(
                 createSampleForecastResponse()
             )
@@ -56,7 +57,7 @@ class WeatherForecastReposistoryTest {
 
         // Trigger
         var testObserver: Single<List<ListItem>> =
-            weatherForecastRepository.fetchWeatherForecast("Singapore")
+            weatherForecastRepository.fetchWeatherForecast(AppConstant.CITY)
 
         testObserver.subscribe(
             {
@@ -73,11 +74,11 @@ class WeatherForecastReposistoryTest {
     @Test(expected = Exception::class)
     fun fetchWeatherForecastFromNetwrok_Error() {
         Mockito.doThrow(Exception("Bad Request"))
-            .`when`(networkService.doWeatherForecastCall("Singapore"))
+            .`when`(networkService.doWeatherForecastCall(AppConstant.CITY))
 
         // Trigger
         var testObserver: Single<List<ListItem>> =
-            weatherForecastRepository.fetchWeatherForecast("Singapore")
+            weatherForecastRepository.fetchWeatherForecast(AppConstant.CITY)
 
         testObserver.subscribe(
             {

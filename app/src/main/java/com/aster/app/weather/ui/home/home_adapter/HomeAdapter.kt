@@ -38,15 +38,15 @@ class HomeAdapter() : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
         //holder.tvAnimalType?.text =
         var key = mainWeatherForecastData.keys.toTypedArray()[position]
         var values = mainWeatherForecastData.get(key)
-        holder.itemView?.labelHumidity.text = "Humidity"
-        holder.itemView?.labelWeather.text = "Weather"
-        holder.itemView?.labelWind.text = "Wind"
+        holder.itemView?.labelHumidity.text = holder.itemView.context.getString(R.string.humidity)
+        holder.itemView?.labelWeather.text = holder.itemView.context.getString(R.string.weather)
+        holder.itemView?.labelWind.text = holder.itemView.context.getString(R.string.wind)
         holder.itemView?.valueHumidity?.text = values?.get(0)?.main?.humidity.toString() + "%"
         holder.itemView?.valueWeather?.text = values?.get(0)?.weatherList?.get(0)?.description
         holder.itemView?.valueWind?.text = values?.get(0)?.wind?.speed?.let {
             Conversion.roundOffDecimal(
                 Conversion.convertWindMPH(it)
-            )?.toString() + " mph"
+            )?.toString() + holder.itemView.context.getString(R.string.mph)
         }
 
         holder.itemView?.txtDate?.text = values?.get(0)?.dt?.let { Conversion.getDay(it)?.name }
@@ -96,7 +96,7 @@ class HomeAdapter() : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // val tvAnimalType = view.tvMain
+
     }
 }
 

@@ -12,9 +12,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainViewModel>() {
 
-    companion object {
-        const val TAG = "MainActivity"
-    }
 
     private var activeFragment: Fragment? = null
     override fun provideLayoutId(): Int = R.layout.activity_main
@@ -69,6 +66,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
         fragmentTransaction.commit()
 
         activeFragment = fragment
+    }
+
+    companion object {
+        const val TAG = "MainActivity"
     }
 
 

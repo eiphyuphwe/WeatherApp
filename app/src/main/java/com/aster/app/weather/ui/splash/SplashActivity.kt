@@ -10,9 +10,7 @@ import com.aster.app.weather.ui.main.MainActivity
 
 class SplashActivity : BaseActivity<SplashViewModel>() {
 
-    companion object {
-        const val TAG = "SplashActivity"
-    }
+
 
     private val SPLASH_TIME_OUT: Long = 3000 // 1 sec
     override fun provideLayoutId(): Int = R.layout.activity_splash
@@ -36,5 +34,9 @@ class SplashActivity : BaseActivity<SplashViewModel>() {
 
     override fun setupObservers() {
 
+    }
+
+    companion object {
+        const val TAG = "SplashActivity"
     }
 }
