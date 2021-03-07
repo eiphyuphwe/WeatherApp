@@ -21,14 +21,13 @@
             android:id="@+id/relLay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="152dp"
-            android:layout_marginEnd="152dp"
             android:gravity="center_horizontal"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/labelHumidity"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/txtDate"
