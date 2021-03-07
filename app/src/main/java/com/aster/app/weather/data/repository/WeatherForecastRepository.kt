@@ -12,7 +12,7 @@ class WeatherForecastRepository @Inject constructor(
     private val databaseService: DatabaseService
 ) {
 
- //fetch the data from network
+    //fetch the data from network
     fun fetchWeatherForecast(city: String?): Single<List<ListItem>> {
         return networkService.doWeatherForecastCall(city)
             .map { it.list }

@@ -50,10 +50,9 @@ class WeatherForecastUsecase @Inject constructor(
                 callWeatherForcastDB(city = city.data)
             } else {
                 // If empty or over 3 hours, call the network, save to database,
-                if(networkHelper.isNetworkConnected()){
+                if (networkHelper.isNetworkConnected()) {
                     callWeatherForcastNetwork(city = city.data)
-                }
-                else{
+                } else {
                     _weatherForecastLiveDataMap.value = Resource.error(null)
 
                 }

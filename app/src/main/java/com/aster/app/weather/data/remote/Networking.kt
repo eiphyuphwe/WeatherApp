@@ -24,7 +24,7 @@ object Networking {
     fun create(baseUrl: String, cacheDir: File, cacheSize: Long): NetworkService {
         // API_KEY = apiKey
         val certificatePinner = CertificatePinner.Builder()
-            .add("api.openweathermap.org","sha256/x4QzPSC810K5/cMjb05Qm4k3Bw5zBn4lTdO/nEW/Td4= ")
+            .add("api.openweathermap.org", "sha256/x4QzPSC810K5/cMjb05Qm4k3Bw5zBn4lTdO/nEW/Td4= ")
             .build()
         return Retrofit.Builder()
             .baseUrl(baseUrl)

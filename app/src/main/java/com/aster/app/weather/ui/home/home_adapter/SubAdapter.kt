@@ -44,7 +44,6 @@ class SubAdapter(
         holder.tvImage.setImageDrawable(imageDrawable)
 
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {

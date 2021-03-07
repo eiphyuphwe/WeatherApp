@@ -3,7 +3,6 @@ package com.aster.app.weather.ui.home
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aster.app.weather.R
@@ -53,10 +52,13 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
                 val weatherList = it.data
                 weatherList?.let { it1 -> adapter.updateData(it1) }
                 adapter.notifyDataSetChanged()
-            } else if(it.status == Status.ERROR){
+            } else if (it.status == Status.ERROR) {
                 Log.d(TAG, "Data fetched failed for weather forecast ${it.status}")
-               // Toast.makeText(activity,"Something went wrong! Please try again!",Toast.LENGTH_LONG).show()
-                Toaster.show(activity!!.applicationContext,"Something went wrong! Please try again!")
+                // Toast.makeText(activity,"Something went wrong! Please try again!",Toast.LENGTH_LONG).show()
+                Toaster.show(
+                    activity!!.applicationContext,
+                    "Something went wrong! Please try again!"
+                )
             }
 
         })

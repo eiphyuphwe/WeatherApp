@@ -7,12 +7,12 @@ import com.aster.app.weather.data.model.Sys
 
 @Entity(tableName = "Sys")
 data class SysEntity(
-        @ColumnInfo(name = "pod")
-        val pod: String?
+    @ColumnInfo(name = "pod")
+    val pod: String?
 ) {
     @Ignore
     constructor(sys: Sys?) : this(
-            pod = sys?.pod
+        pod = sys?.pod
 
     )
 }
