@@ -1,5 +1,5 @@
 # WeatherApp
-- Weather Forecast Application with MVVM design architecture and clean architecture
+- Weather Forecast Application with MVVM with clean architecture
 - `Room` database
 - `Retrofit` for network call
 - `SSL` certificate pinning with Retrofit
