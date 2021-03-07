@@ -7,6 +7,6 @@
 - `LiveData`
 - `Unit Testing`
 - `Mokito` for mocking the objects in Unit Testing
-- `Proguard` setup for Release variant for code obfusation
-- `R8` code shrinking
+- `Proguard` setup and `R8` for code shrinking and code obfusation for release variant 
+- 
 
